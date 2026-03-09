@@ -1,0 +1,724 @@
+
+Hiqmat portfolio · HTML
+Copy
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hiqmat Yetunde Ajibola — Digital Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f4f4f4;
+    --accent: #0066ff;
+    --muted: #888888;
+    --card-bg: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 3.5rem;
+    position: relative;
+    z-index: 1;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    opacity: 0.07;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.0;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-name .yetunde {
+    display: block;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1.0;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
+    max-width: 360px;
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-contact {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-contact a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: #777;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .hero-contact a:hover { color: var(--accent); }
+
+  .hero-right {
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3.5rem 4rem 4rem;
+    position: relative;
+  }
+
+  .hero-right::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    color: var(--accent);
+    opacity: 0.06;
+    position: absolute;
+    top: -2rem;
+    left: 1rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.4;
+    color: #f4f4f4;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-quote span { color: var(--accent); font-style: italic; }
+
+  .stats-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+
+  .stat {
+    border-top: 2px solid var(--accent);
+    padding-top: 0.8rem;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f4f4f4;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: #888;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 0; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience { background: var(--ink); }
+  .experience .section-title { color: var(--cream); }
+  .experience .section-label { color: var(--gold); }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: #2a2a2a;
+    border: 1.5px solid #2a2a2a;
+  }
+
+  .exp-card {
+    background: var(--ink);
+    padding: 2.5rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .exp-card:hover { background: #161616; }
+
+  .exp-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-company {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.85rem;
+    color: #aaa;
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.55;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  /* ── SKILLS ── */
+  .skills { background: var(--cream); }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .skill-item {
+    margin-bottom: 1.8rem;
+  }
+
+  .skill-name {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .skill-bar {
+    height: 3px;
+    background: #ddd;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #66aaff);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .skill-fill.animated { transform: scaleX(1); }
+
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    border: 1.5px solid var(--ink);
+    padding: 0.4rem 0.8rem;
+    text-transform: uppercase;
+    cursor: default;
+    transition: all 0.2s;
+  }
+  .tag:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* ── PROJECTS & AWARDS ── */
+  .extras { background: #111; }
+  .extras .section-title { color: #f4f4f4; }
+  .extras .section-label { color: var(--accent); }
+
+  .extras-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: #2a2a2a;
+  }
+
+  .extra-card {
+    background: #111;
+    padding: 2rem 1.8rem;
+    transition: background 0.3s;
+  }
+  .extra-card:hover { background: #1a1a1a; }
+
+  .extra-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .extra-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .extra-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+
+  /* ── EDUCATION ── */
+  .education { background: var(--cream); }
+
+  .edu-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .edu-card {
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem 2rem;
+    background: var(--card-bg);
+  }
+
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-school {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .edu-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FOOTER / CTA ── */
+  .cta {
+    background: var(--accent);
+    padding: 5rem 0;
+    text-align: center;
+  }
+
+  .cta-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .cta-text em { font-style: italic; opacity: 0.8; }
+
+  .cta-link {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ffffff;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .cta-link:hover {
+    background: #ffffff;
+    color: var(--accent);
+    border-color: #ffffff;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    mix-blend-mode: difference;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 6rem 2rem 3rem; }
+    .hero-right { padding: 3rem 2rem; }
+    .exp-grid, .skills-layout, .edu-row, .extras-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .stats-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Hiqmat Yetunde Ajibola</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Digital Marketing Professional · Lagos, Nigeria</p>
+    <h1 class="hero-name">Hiqmat<br/><span class="yetunde">Yetunde</span>Ajibola</h1>
+    <p class="hero-subtitle">
+      I turn brands into movements — blending sharp strategy, compelling content, and data-driven decisions to grow audiences that actually convert.
+    </p>
+    <div class="hero-contact" id="contact">
+      <a href="tel:+2349032057814">+234 903 205 7814</a>
+      <a href="/cdn-cgi/l/email-protection#96eff3e2e3f8f2f3feffe7fbf7e2d6f1fbf7fffab8f5f9fb"><span class="__cf_email__" data-cfemail="88f1edfcfde6ecede0e1f9e5e9fcc8efe5e9e1e4a6ebe7e5">[email&#160;protected]</span></a>
+      <span style="color:#aaa; font-size:0.72rem; font-family:'Space Mono',monospace; margin-top:0.3rem;">Lagos State, Nigeria</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <blockquote class="hero-quote">
+      Strategy that <span>converts.</span><br/>
+      Content that <span>captivates.</span><br/>
+      Brands that <span>last.</span>
+    </blockquote>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years in Marketing</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Brands Managed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">MSc</div>
+        <div class="stat-label">Marketing (In Progress)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="container">
+    <p class="section-label">Work History</p>
+    <h2 class="section-title">Where I've Made an Impact</h2>
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <div class="exp-period">2025 — Present</div>
+        <div class="exp-role">Digital Marketing Executive</div>
+        <div class="exp-company">BizEdge · Lagos, Nigeria</div>
+        <ul class="exp-bullets">
+          <li>Engineered multi-platform campaigns that amplified brand visibility across all digital touchpoints</li>
+          <li>Drove KPI performance through real-time analytics monitoring and campaign optimization</li>
+          <li>Championed brand consistency, unifying voice across all online channels company-wide</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-period">2021 — 2025</div>
+        <div class="exp-role">Promotions Manager</div>
+        <div class="exp-company">Bolaglobal · Remote</div>
+        <ul class="exp-bullets">
+          <li>Spearheaded promotional campaigns for farm food & beverage brands, boosting sales and awareness</li>
+          <li>Optimized distribution strategy and engagement tracking to maximize ROI per campaign</li>
+          <li>Cultivated deep client and stakeholder relationships, driving loyalty and repeat business</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-period">2023</div>
+        <div class="exp-role">Brand Manager</div>
+        <div class="exp-company">TheEBConcept · Lagos, Nigeria</div>
+        <ul class="exp-bullets">
+          <li>Architected content calendars and executed multi-brand content strategies simultaneously</li>
+          <li>Sustained high audience engagement through platform-native, brand-consistent storytelling</li>
+          <li>Applied data-driven insights to iterate and improve campaign performance continuously</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="container">
+    <p class="section-label">Core Competencies</p>
+    <h2 class="section-title">What I Bring to the Table</h2>
+    <div class="skills-layout">
+      <div class="skills-bars">
+        <div class="skill-item">
+          <div class="skill-name"><span>Digital Marketing Strategy</span><span>95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Social Media & Content Creation</span><span>92%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Brand Development & Promotions</span><span>90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Analytics & Performance Tracking</span><span>85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name"><span>Project Management & Team Collaboration</span><span>88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:0.82rem; color:var(--muted); margin-bottom:1.5rem; line-height:1.7;">
+          A rare blend of creative storytelling and analytical thinking — fluent in both the language of brands and the logic of data.
+        </p>
+        <div class="tags-cloud">
+          <span class="tag">Campaign Strategy</span>
+          <span class="tag">SEO & SEM</span>
+          <span class="tag">Content Marketing</span>
+          <span class="tag">Instagram</span>
+          <span class="tag">Facebook Ads</span>
+          <span class="tag">KPI Reporting</span>
+          <span class="tag">Brand Identity</span>
+          <span class="tag">Audience Growth</span>
+          <span class="tag">Digital Marketing</span>
+          <span class="tag">Stakeholder Mgmt</span>
+          <span class="tag">English</span>
+        </div>
+        <div style="margin-top:1.8rem;">
+          <p style="font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--accent); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.8rem;">Certifications</p>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <div style="display:flex; align-items:center; gap:0.7rem;">
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0;"></span>
+              <span style="font-size:0.82rem; color:var(--ink); font-weight:500;">Digital Marketing Professional <span style="color:var(--muted); font-weight:300;">(DMP)</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.7rem;">
+              <span style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0;"></span>
+              <span style="font-size:0.82rem; color:var(--ink); font-weight:500;">Project Management Professional <span style="color:var(--muted); font-weight:300;">(PMP)</span></span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section class="extras">
+  <div class="container">
+    <p class="section-label">Beyond the Brief</p>
+    <h2 class="section-title">Recognition & Initiatives</h2>
+    <div class="extras-grid">
+      <div class="extra-card">
+        <div class="extra-icon">🏆</div>
+        <div class="extra-title">Most Engaging Staff</div>
+        <div class="extra-desc">Awarded at BizEdge for exceptional audience engagement and campaign energy that set a new standard internally.</div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon">🎤</div>
+        <div class="extra-title">Career Speaker</div>
+        <div class="extra-desc">TTS Initiative, Jun 2023 — Mentored students on leveraging social media for career growth and professional development.</div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon">📣</div>
+        <div class="extra-title">Social Director</div>
+        <div class="extra-desc">Freedom of Information CDS, Calabar, Cross-River — Led social outreach and advocacy communications for the initiative.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+  <div class="container">
+    <p class="section-label">Academic Foundation</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-row">
+      <div class="edu-card">
+        <div class="edu-degree">Master's Degree, Marketing</div>
+        <div class="edu-school">Lagos State University</div>
+        <div class="edu-year">2025 — 2026 · In Progress</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor's Degree, Mass Communication &amp; Media Studies</div>
+        <div class="edu-school">Lagos State University</div>
+        <div class="edu-year">2016 — 2021 · Second Class Lower</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <p class="cta-text">Ready to build something<br/><em>unforgettable</em> together?</p>
+    <a class="cta-link" href="/cdn-cgi/l/email-protection#a2dbc7d6d7ccc6c7cacbd3cfc3d6e2c5cfc3cbce8cc1cdcf">Get In Touch</a>
+  </div>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Animate skill bars on scroll
+  const fills = document.querySelectorAll('.
