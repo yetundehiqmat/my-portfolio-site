@@ -19,12 +19,13 @@
 
   html { scroll-behavior: smooth; }
 
+
   body {
-    background-color: var(--cream);
-    color: var(--ink);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
   }
 
   /* ── NOISE TEXTURE OVERLAY ── */
@@ -80,19 +81,24 @@
     animation: fadeUp 0.8s 0.2s forwards;
   }
 
-  .hero-right-bg {
+.hero-right-bg {
   position: absolute;
   inset: 0;
   background-image: url('https://i.ibb.co/bM7Yn518/IMG-0335-2.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   z-index: 0;
 }
 .hero-right-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 12, 8, 0.68);
+  background: rgba(0,0,0,0.45);
   z-index: 1;
+}
+
+  .hero-right * {
+  position: relative;
+  z-index: 2;
 }
 
   .hero-name {
@@ -142,14 +148,14 @@
   }
   .hero-contact a:hover { color: var(--accent); }
 
-  .hero-right {
-    background: var(--ink);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 3.5rem 4rem 4rem;
-    position: relative;
-  }
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3.5rem 4rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
 
   .hero-right::before {
     content: '"';
