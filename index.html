@@ -87,19 +87,37 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 4rem 3.5rem;
+  
+  /* Background image */
   background-image: url('https://i.ibb.co/bM7Yn518/IMG-0335-2.jpg');
-  background-size: cover;
-  background-position: center top;
+  background-size: cover;       /* cover the container */
+  background-position: center top; /* focus on top area */
   background-repeat: no-repeat;
 }
+
 .hero-right-overlay {
   position: absolute;
-  inset: 0;
-  background: rgba(15, 12, 8, 0.68);
-  z-index: 1;
+  inset: 0;                       /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(15, 12, 8, 0.68); /* semi-dark overlay for readability */
+  z-index: 1;                      /* sits above background, below content */
 }
 
-  .hero-right * {
+/* Decorative quote mark */
+.hero-right::before {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 18rem;
+  color: var(--accent);
+  opacity: 0.06;
+  position: absolute;
+  top: -2rem;
+  left: 1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Make all content appear above overlay */
+.hero-right * {
   position: relative;
   z-index: 2;
 }
