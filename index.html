@@ -46,6 +46,7 @@
     position: relative;
     overflow: hidden;
   }
+  
 
   .hero-left {
     background: #ffffff;
@@ -78,6 +79,21 @@
     opacity: 0;
     animation: fadeUp 0.8s 0.2s forwards;
   }
+
+  .hero-right-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.ibb.co/bM7Yn518/IMG-0335-2.jpg');
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+.hero-right-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 12, 8, 0.68);
+  z-index: 1;
+}
 
   .hero-name {
     font-family: 'Playfair Display', serif;
@@ -532,27 +548,31 @@
     </div>
   </div>
 
-  <div class="hero-right">
-    <blockquote class="hero-quote">
-      Strategy that <span>converts.</span><br/>
-      Content that <span>captivates.</span><br/>
-      Brands that <span>last.</span>
-    </blockquote>
-    <div class="stats-row">
-      <div class="stat">
-        <div class="stat-num">4+</div>
-        <div class="stat-label">Years in Marketing</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">15+</div>
-        <div class="stat-label">Brands Managed</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">MSc</div>
-        <div class="stat-label">Marketing (In Progress)</div>
-      </div>
+<div class="hero-right">
+  <div class="hero-right-bg"></div>
+  <div class="hero-right-overlay"></div>
+
+  <blockquote class="hero-quote">
+    Strategy that <span>converts.</span><br/>
+    Content that <span>captivates.</span><br/>
+    Brands that <span>last.</span>
+  </blockquote>
+
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Years in Marketing</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">15+</div>
+      <div class="stat-label">Brands Managed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">MSc</div>
+      <div class="stat-label">Marketing (In Progress)</div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- EXPERIENCE -->
